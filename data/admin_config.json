@@ -1,0 +1,7 @@
+{
+  "admin_password": "admin",
+  "bank_name": "พร้อมเพย์ / ทุกธนาคาร",
+  "account_name": "บัญชีรับเงินร้านค้า",
+  "account_number": "081-XXX-XXXX",
+  "bank_qr_url": "/static/default_bank_qr.png"
+}

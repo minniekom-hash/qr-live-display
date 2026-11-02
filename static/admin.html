@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - AI Slip Inspector & Top 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style-admin.css">
+</head>
+<body>
+  
+  <!-- LOGIN VIEW -->
+  <div id="loginView" class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-badge">👑 OWNER / ADMIN</div>
+      <h1 class="auth-title">เข้าสู่ระบบแอดมิน</h1>
+      <p class="auth-subtitle">ระบบจัดการบัญชีรับเงินและ AI ตรวจสอบสลิป</p>
+      
+      <form id="loginForm" class="auth-form">
+        <div class="input-group">
+          <label>รหัสผ่านแอดมิน (Default: admin)</label>
+          <input type="password" id="adminPassword" placeholder="ใส่รหัสผ่าน..." required autocomplete="current-password">
+        </div>
+        <button type="submit" id="btnLogin" class="btn-primary">
+          <span>เข้าสู่ระบบ</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD VIEW -->
+  <div id="dashboardView" class="dashboard-wrapper" style="display: none;">
+    
+    <!-- Top Header -->
+    <header class="admin-header">
+      <div class="header-brand">
+        <span class="live-dot"></span>
+        <span class="brand-text">VIP LIVE MANAGEMENT</span>
+        <span class="badge-tag">ADMIN PORTAL</span>
+      </div>
+      <div class="header-actions">
+        <a href="/" target="_blank" class="nav-link">🖥️ เปิดเว็บหลัก (PC)</a>
+        <a href="/mobile" target="_blank" class="nav-link">📱 เปิดเว็บบนมือถือ</a>
+        <button id="btnLogout" class="btn-logout">ออกจากระบบ</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="admin-grid">
+        
+        <!-- CARD 1: ตั้งค่าบัญชีและ QR Code รับเงิน -->
+        <section class="card config-card">
+          <div class="card-header">
+            <h2>🏦 ตั้งค่าบัญชีและ QR Code รับเงิน</h2>
+            <p>QR Code และข้อมูลนี้จะไปแสดงในหน้ามือถือให้ลูกค้าสแกนโอนเงิน</p>
+          </div>
+
+          <form id="configForm" class="config-form">
+            <div class="qr-preview-box">
+              <label class="qr-upload-label" for="bankQrInput">
+                <img id="bankQrPreview" src="/static/default_bank_qr.png" alt="QR Code รับเงิน">
+                <div class="qr-upload-overlay">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="18" x2="12" y2="12"/>
+                  </svg>
+                  <span>คลิกเพื่อเปลี่ยนรูปภาพ QR Code</span>
+                </div>
+              </label>
+              <input type="file" id="bankQrInput" accept="image/*" style="display:none;">
+            </div>
+
+            <div class="input-row">
+              <div class="input-group">
+                <label>ธนาคาร / พร้อมเพย์</label>
+                <input type="text" id="bankNameInput" placeholder="เช่น พร้อมเพย์ / กสิกรไทย" required>
+              </div>
+              <div class="input-group">
+                <label>ชื่อบัญชี</label>
+                <input type="text" id="accountNameInput" placeholder="เช่น นายสมชาย ใจดี" required>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="input-group">
+                <label>เลขบัญชี / เบอร์พร้อมเพย์</label>
+                <input type="text" id="accountNumberInput" placeholder="เช่น 081-XXX-XXXX" required>
+              </div>
+              <div class="input-group">
+                <label>เปลี่ยนรหัสผ่านแอดมินใหม่ (เว้นว่างได้)</label>
+                <input type="password" id="newPasswordInput" placeholder="ใส่รหัสใหม่ถ้าต้องการเปลี่ยน">
+              </div>
+            </div>
+
+            <button type="submit" id="btnSaveConfig" class="btn-primary">
+              <span>💾 บันทึกการตั้งค่าบัญชี</span>
+            </button>
+          </form>
+        </section>
+
+        <!-- CARD 2: Top 3 Spenders Management -->
+        <section class="card ranking-card">
+          <div class="card-header flex-header">
+            <div>
+              <h2>🏆 Top 3 Spenders ปัจจุบัน</h2>
+              <p>อันดับลูกค้าที่จ่ายสูงสุดที่กำลังแสดงมุมขวาบนหน้าจอหลัก</p>
+            </div>
+            <button id="btnResetRanking" class="btn-danger-sm">🔄 รีเซ็ต Top 3 (เริ่มวันใหม่)</button>
+          </div>
+
+          <div id="rankingList" class="ranking-preview-list">
+            <!-- Dynamic Top 3 render -->
+          </div>
+        </section>
+
+      </div>
+
+      <!-- CARD 3: ประวัติการส่งและระบบ AI ตรวจสลิป -->
+      <section class="card history-card">
+        <div class="card-header">
+          <h2>🤖 รายการส่งข้อมูล & ผลการตรวจสอบของ AI (Slip Inspector)</h2>
+          <p>AI จะตรวจสอบ Mini-QR และดึงยอดเงินอัตโนมัติ (แอดมินสามารถคลิกแก้ไขยอดเงินได้)</p>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>เวลาส่ง</th>
+                <th>ผลตรวจสอบ AI</th>
+                <th>ยอดเงินที่ขึ้นจอ</th>
+                <th>รูปที่ขึ้นจอ</th>
+                <th>สลิปโอนเงิน</th>
+                <th>ข้อความ</th>
+                <th>Instagram</th>
+                <th>Facebook</th>
+                <th>การจัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="submissionsTableBody">
+              <tr><td colspan="9" class="text-center">กำลังโหลดข้อมูล...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- SLIP VIEWER MODAL -->
+  <div id="slipModal" class="modal-backdrop">
+    <div class="slip-modal-card">
+      <div class="slip-modal-header">
+        <h3>ตรวจสอบสลิปโอนเงิน</h3>
+        <button id="btnCloseSlipModal" class="btn-close-modal">✕</button>
+      </div>
+      <div class="slip-modal-body">
+        <img id="slipModalImg" src="" alt="สลิปเงินโอน">
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app-admin.js"></script>
+</body>
+</html>

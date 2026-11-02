@@ -1,0 +1,61 @@
+[
+  {
+    "id": "4b50757100bc4d6f8822781c727a1336",
+    "amount": 500.0,
+    "message": "จ่าย 500 บาท",
+    "ig": "user_500",
+    "facebook": "User 500",
+    "image_url": "/uploads/216916a27681479c8039e8dcc80b3b88.jpg",
+    "slip_url": "/uploads/slips/slip_1a5e26cef644484c81081bdd03ebe986.jpg",
+    "slip_time": "15:45",
+    "created_at": "2026-11-02 15:45:10",
+    "timestamp": 1793609110.145193
+  },
+  {
+    "id": "4f38b01329404a41b67bde84adfdbea0",
+    "amount": 1500.0,
+    "message": "จ่าย 1500 บาท",
+    "ig": "user_1500",
+    "facebook": "User 1500",
+    "image_url": "/uploads/805e97ed6bd848d6ae74d35339ad07d0.jpg",
+    "slip_url": "/uploads/slips/slip_d08e85e461024d0a9025adbc81e8686d.jpg",
+    "slip_time": "15:45",
+    "created_at": "2026-11-02 15:45:10",
+    "timestamp": 1793609110.160671
+  },
+  {
+    "id": "702c00aa6eaf4ab39ce0e813d5d42745",
+    "amount": 1000.0,
+    "message": "จ่าย 1000 บาท",
+    "ig": "user_1000",
+    "facebook": "User 1000",
+    "image_url": "/uploads/3c96b19992714ee3b2eef9fad8eb116d.jpg",
+    "slip_url": "/uploads/slips/slip_37748b7f56d943109ffda00eb6c49a87.jpg",
+    "slip_time": "15:45",
+    "created_at": "2026-11-02 15:45:10",
+    "timestamp": 1793609110.165837
+  },
+  {
+    "id": "145ec7542b304761a6d2bae824b9b8c1",
+    "amount": 500.0,
+    "message": "ทดสอบส่งสลิปให้ AI ตรวจสอบอัตโนมัติ",
+    "ig": "ai_tester",
+    "facebook": "AI Tester",
+    "image_url": "/uploads/e2eec5b56a824e928f8e55a66e553868.jpg",
+    "slip_url": "/uploads/slips/slip_5ecb529c9a8c46ff80d3de021975d071.jpg",
+    "slip_time": "15:58",
+    "ai_report": {
+      "is_valid": true,
+      "confidence": 70,
+      "qr_found": false,
+      "bank_name": "สลิปโอนเงิน (รอแอดมินยืนยันยอด)",
+      "ref_id": "-",
+      "amount": 500.0,
+      "slip_time": "15:58",
+      "diff_minutes": 0.0,
+      "reason": "อัปโหลดสำเร็จ (ตรวจพบสลิป ส่งเข้าสู่ระบบ)"
+    },
+    "created_at": "2026-11-02 15:58:42",
+    "timestamp": 1793609922.884019
+  }
+]
